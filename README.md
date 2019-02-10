@@ -1,2 +1,2 @@
 # dev
-Private reposiyory
+Private repository
