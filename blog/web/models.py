@@ -2,10 +2,15 @@ from django.db import models
 from django.utils import timezone
 from django.shortcuts import reverse
 
+from django.utils.translation import ugettext as _
+
 
 class Category(models.Model):
-    title = models.CharField('Заголовок', max_lenght=100)
+    title = models.CharField('Заголовок', max_length=100)
     slug = models.SlugField(max_length=50, unique=True)
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return '{}'.format(self.title)
@@ -22,6 +27,10 @@ class Post(models.Model):
     tags = models.ManyToManyField('Tag', blank=True, related_name='posts')
     published_date = models.DateTimeField(blank=True, null=True)
 
+    publishTrue = models.BooleanField(default=True, db_index=True, verbose_name=_('Publish'))
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         return '{}'.format(self.title)
 
@@ -35,11 +44,11 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
-        ordering = ('-created',)
+        ordering = ('-published_date',)
 
 
 class Tag(models.Model):
-    title = models.CharField(max_lenght = 20)
+    title = models.CharField(max_length=20)
     slug = models.SlugField(max_length=50, unique=True)
 
     def __str__(self):
