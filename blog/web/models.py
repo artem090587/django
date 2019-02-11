@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.shortcuts import reverse
 
 
-class Blog(models.Model):
+class Category(models.Model):
     title = models.CharField('Заголовок', max_lenght=100)
     slug = models.SlugField(max_length=50, unique=True)
 
@@ -11,8 +11,8 @@ class Blog(models.Model):
         return '{}'.format(self.title)
 
     class Meta:
-        verbose_name = 'Блог'
-        verbose_name_plural = 'Блоги'
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
 
 
 class Post(models.Model):
@@ -33,8 +33,8 @@ class Post(models.Model):
         return reverse("post_detail_url", kwargs={"slug": self.slug})
     
     class Meta:
-        verbose_name = 'Пост'
-        verbose_name_plural = 'Посты'
+        verbose_name = 'Статья'
+        verbose_name_plural = 'Статьи'
         ordering = ('-created',)
 
 
