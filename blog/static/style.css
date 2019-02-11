@@ -1,0 +1,65 @@
+.clear:before,
+.clear:after {
+  content: " ";
+  display: table;
+}
+.clear:after {
+  clear: both;
+}
+.row {
+  width: 960px;
+  margin: 0 auto;
+}
+h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+nav ul li {
+  display: block;
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  float: left;
+}
+.post {
+  margin-bottom: 30px;
+}
+.post p {
+  margin-bottom: 10px;
+}
+.post h3 {
+  font-size: 18px;
+  font-family: Tahoma;
+  margin-bottom: 15px;
+}
+.post .created {
+  font-size: 10px;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+form ul {
+  list-style: none;
+  margin: 0;
+}
+form ul li label {
+  display: block;
+  font-weight: bold;
+}
+form ul li input {
+  margin-bottom: 20px;
+}
+.blog {
+  margin-bottom: 20px;
+}
+.blog h3,
+.blog .actions {
+  float: left;
+  width: 100px;
+}
+.alert {
+  border: 1px solid #222222;
+  line-height: 30px;
+  padding-left: 15px;
+  margin-bottom: 20px;
+}

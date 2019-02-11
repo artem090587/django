@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+    <div class="row">
+        <h1>Блоги</h1>
+    </div>
+    <div class="row">
+        {% for blog in blog_list %}
+            <div class="blog">
+                <h3>{{ blog.user.username }}</h3>
+                <div class="actions">
+                    <form action="{% url 'blog:subscribe' %}" method="post">{% csrf_token %}
+                        <input type="hidden" value="{{ blog.user_id }}" name="blog_id" />
+                        {% if blog.user_id in subscriptions %}
+                            <input type="submit" value="Отписаться" />
+                        {% else %}
+                            <input type="submit" value="Подписаться" />
+                        {% endif %}
+                    </form>
+                </div>
+            <div class="clear"></div>
+            </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}
+
+{% block head_title %}Блоги {% endblock %}
