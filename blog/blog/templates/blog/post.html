@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+    <div class="row">
+        <h1>Лента постов</h1>
+    </div>
+    <div class="row">
+        {% for post in post_list %}
+            <div class="post">
+                <div class="created">{{ post.created|date:'H:i d.m.Y' }}</div>
+                <h3>{{ post.title }}</h3>
+                <div class="text">
+                    {{ post.text|linebreaks }}
+                    <form action="{% url 'blog:post_read' %}" method="post">{% csrf_token %}
+                        <input type="hidden" value="{{ post.id }}" name="post_id">
+                        <input type="submit" value="Отметить как прочитанное" />
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}
+
+{% block head_title %}Лента постов {% endblock %}
